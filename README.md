@@ -2,7 +2,7 @@
 
 ### Creating Aspect class
 * Aspect bean should also be registered in IOC
-* @Aspect and @Component
+* @Aspect and @Component must be used
 ```java
 	@Aspect
 	@Component
@@ -47,8 +47,8 @@
 
 ### Using @Around advice
 * Have to use ProceedingJoinPoint class
-* statements before ProceedingJoinPoint.proceed() is considered as @Before("") advice
-* statements after ProceedingJoinPoint.proceed() is considered as @AfterThrowing advice
+* statements before ProceedingJoinPoint.proceed() are considered as @Before("") advice
+* statements after ProceedingJoinPoint.proceed() are considered as @AfterThrowing advice
 * if anything fails in ProceedingJoinPoint.proceed() {running adviced method then} its considered as @AfterThrowing advice
 
 ```java
