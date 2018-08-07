@@ -1,13 +1,16 @@
 # SpringAOPAnnotationBasedProject
 
-## Creating Aspect class
+### Creating Aspect class
+* Aspect bean should also be registered in IOC
+* @Aspect and @Component
 ```java
 	@Aspect
 	@Component
 	public class Audience {}
 ```
 	
-## Using @Before advice
+### Using @Before advice
+* Running before the adviced method
 ```java	
 	@Before("execution(public void com.spring.aop.concert.Performance.perform())")
 	public void silenceCellPhones(){
@@ -15,14 +18,17 @@
 	}
 ```
 
-### Using @After advice
+### Using @@AfterReturning advice
+* Running after returning successfully from the adviced method
 ```java	
 	@AfterReturning("execution(public void com.spring.aop.concert.Performance.perform())")
 	public void applause(){
 		System.out.println("Now, Clap Clap Clap");
 	}
 ```
-## Using @@AfterThrowing advice
+
+### Using @AfterThrowing advice
+* Running after throwing exception from the adviced method
 ```java	
 	@AfterThrowing("execution(public void com.spring.aop.concert.Performance.perform())")
 	public void demandRefund(){
@@ -30,7 +36,8 @@
 	}
 ```
 
-## Using @Pointcut to use more generic Expressions
+### Using @Pointcut to use more generic Expressions
+* To make a common ragular expression
 ```java
 	@Pointcut("execution(public * com.spring.aop.concert.Performance.perform(..))")
 	public void performance(){}
@@ -38,7 +45,12 @@
 	@Before("performance()"), @AfterThrowing("performance()"), etc.
 ```
 
-## Using @Around advice
+### Using @Around advice
+* Have to use ProceedingJoinPoint class
+* statements before ProceedingJoinPoint.proceed() is considered as @Before("") advice
+* statements after ProceedingJoinPoint.proceed() is considered as @AfterThrowing advice
+* if anything fails in ProceedingJoinPoint.proceed() {running adviced method then} its considered as @AfterThrowing advice
+
 ```java
 	@Around("performance()")
 	public void watchperformance(ProceedingJoinPoint jp){
