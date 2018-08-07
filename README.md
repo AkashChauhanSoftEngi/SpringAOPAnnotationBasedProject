@@ -1,6 +1,6 @@
 # SpringAOPAnnotationBasedProject
 
-##Creating Aspect class
+## Creating Aspect class
 ```java
 	@Aspect
 	@Component
@@ -15,14 +15,14 @@
 	}
 ```
 
-##Using @After advice
+### Using @After advice
 ```java	
 	@AfterReturning("execution(public void com.spring.aop.concert.Performance.perform())")
 	public void applause(){
 		System.out.println("Now, Clap Clap Clap");
 	}
 ```
-##Using @@AfterThrowing advice
+## Using @@AfterThrowing advice
 ```java	
 	@AfterThrowing("execution(public void com.spring.aop.concert.Performance.perform())")
 	public void demandRefund(){
@@ -30,7 +30,7 @@
 	}
 ```
 
-##Using @Pointcut to use more generic Expressions
+## Using @Pointcut to use more generic Expressions
 ```java
 	@Pointcut("execution(public * com.spring.aop.concert.Performance.perform(..))")
 	public void performance(){}
@@ -38,7 +38,7 @@
 	@Before("performance()"), @AfterThrowing("performance()"), etc.
 ```
 
-##Using @Around advice
+## Using @Around advice
 ```java
 	@Around("performance()")
 	public void watchperformance(ProceedingJoinPoint jp){
